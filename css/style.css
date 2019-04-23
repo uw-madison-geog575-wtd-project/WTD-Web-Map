@@ -1,0 +1,36 @@
+/* Stylesheet by Jackson Myatt, 2019 */
+
+#map {
+    height: 750px;
+}
+
+.header {
+    font: Helvetica;
+    text-align: center;
+}
+
+#panel {
+    width: 100%;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.range-slider {
+    width: 50%;
+}
+
+#forward {
+    float: right;
+}
+
+#reverse {
+    float: left;
+}
+
+.leaflet-popup-content p {
+    margin: 0.2em 0;
+    color: navy;
+    font: Helvetica;
+}
