@@ -2,7 +2,7 @@
 
 //pseudo-global variables and the initial expressed attribute
 var attrArray = ["YR2000","YR2001","YR2002","YR2003","YR2004","YR2005","YR2006","YR2007","YR2008","YR2009","YR2010","YR2011","YR2012","YR2013","YR2014","YR2015","YR2016","YR2017"],
-    expressed = attrArray[8];
+    expressed = attrArray[17];
     console.log(expressed);
   
 function createMap(){
@@ -106,7 +106,7 @@ function updateTopTen(ByYear_CountryCsv){
         var topTenList = d3.select(".topTenList")
             .append("li")
             .attr("class","topTenListItem "+ i.toString())
-            .text(topTenCountries[i][0] + ' ' + topTenCountries[i][1]);
+            .text(topTenCountries[i][0] + ' - ' + topTenCountries[i][1] + ' acts of terrorism');
     }
         
 };
