@@ -5,6 +5,16 @@ var attrArray = ["YR2000","YR2001","YR2002","YR2003","YR2004","YR2005","YR2006",
     expressed = attrArray[0];
     console.log(expressed);
   
+//chart frame dimensions
+var chartWidth = (d3.select(".chartContainer").node().getBoundingClientRect().width)*.5,
+    chartHeight = 500,
+    leftPadding = 50,
+    rightPadding = 2,
+    topBottomPadding = 6,
+    chartInnerWidth = chartWidth - leftPadding - rightPadding,
+    chartInnerHeight = chartHeight - topBottomPadding * 2,
+    translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
+
 function createMap(){
     
     var map = L.map('map', {
@@ -54,6 +64,9 @@ function getData(map){
         
         //call the top ten function
         createTopTen(ByYear_CountryCsv);
+        
+        //call the chart function
+        setChart(ByYear_WeaponTypeCsv);
     }
 };
 
@@ -126,7 +139,103 @@ function updateTopTen(ByYear_CountryCsv){
     }
         
 };
-        
+ 
+function setChart(csvData){
+    //initial y scale for the chart
+    var yScale = d3.scale.linear()
+        .range([500,0])
+        .domain([0,Math.ceil(csvData/100)*100]);
+    
+    //create a svg element to hold the bar chart
+    var chart = d3.select(".chartContainer")
+        .append("svg")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight)
+        .attr("class", "chart");
+    
+    //create a rectangle for chart background fill
+    var chartBackground = chart.append("rect")
+        .attr("class","chartBackground")
+        .attr("width", chartInnerWidth)
+        .attr("height", chartInnerHeight)
+        .attr("transform", translate);
+    
+    //set bars for each country
+    var bars = chart.selectAll(".bar")
+        .data(csvData)
+        .enter()
+        .append("rect")
+        .sort(function(a,b){
+            return b[expressed] - a[expressed]
+        })
+        .attr("class", function(d){
+            return "bar "+d.TYPE;
+        })
+        .attr("width", chartInnerWidth / csvData.length - 1);
+    
+    //add style description to each rect
+    var desc = bars.append("desc")
+        .text('{"stroke": "none", "stroke-width":"0px"}');
+    
+    //create vertical axis generator
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+    
+    //place axis
+    var axis = chart.append("g")
+        .attr("class","axis")
+        .attr("transform", translate)
+        .call(yAxis);
+    
+    //create frame for chart border
+    var chartFrame = chart.append("rect")
+        .attr("class", "chartFrame")
+        .attr("width", chartInnerWidth)
+        .attr("height", chartInnerHeight)
+        .attr("transform", translate);
+    
+    //set bar positions, heights and colors
+    updateChart(bars, csvData.length, csvData);
+};
+  
+function updateChart(bars, n, csvData){
+    //find the max of the individual data ranges
+    var minMaxArray = [];
+    for (var i=0; i<n; i++){
+        var inputData = csvData[i][expressed];
+        minMaxArray.push(parseInt(inputData));
+    };
+    
+    //set min and max for y scale
+    var min = 0,
+        max = Math.ceil(Math.max.apply(null, minMaxArray)/100)*100;
+    
+    var yScale = d3.scale.linear()
+        .range([463,0])
+        .domain([min,max]);
+    
+    //create vertical axis generator
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+    
+    //place axis
+    var axis = d3.select(".axis")
+        .call(yAxis);
+    
+    //position bars
+    bars.attr("x",function(d,i){
+        return i * (chartInnerWidth / n) + leftPadding;
+    })
+    .attr("height", function(d,i){
+        return 463 - yScale(parseInt(d[expressed]));
+    })
+    .attr("y",function(d,i){
+        return yScale(parseInt(d[expressed])) + topBottomPadding;
+    })
+    .style("fill","#de2d26");
+};
         
     
 $(document).ready(createMap);
