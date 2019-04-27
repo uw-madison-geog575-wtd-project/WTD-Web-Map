@@ -2,7 +2,8 @@
 
 //pseudo-global variables and the initial expressed attribute
 var attrArray = ["YR2000","YR2001","YR2002","YR2003","YR2004","YR2005","YR2006","YR2007","YR2008","YR2009","YR2010","YR2011","YR2012","YR2013","YR2014","YR2015","YR2016","YR2017"],
-    expressed = attrArray[0];
+    expressed = attrArray[8];
+    console.log(expressed);
   
 function createMap(){
     
@@ -49,8 +50,68 @@ function getData(map){
         console.log(ByYear_TargetTypeCsv);
         console.log(ByYear_WeaponTypeCsv);
         console.log(ByYear_CountryCsv);
+        
+        //call the top ten function
+        createTopTen(ByYear_CountryCsv);
     }
 };
 
+//function to create the top 10 countries div
+function createTopTen(ByYear_CountryCsv){
+    //add the div
+    var topTenDiv = d3.select(".topTenContainer")
+        .append("div")
+        .attr("class","topTenDiv");
+    
+    var topTenTitle = topTenDiv.append("h1")
+        .attr("class","topTenTitle")
+        .text('Top 10 Most Terrorized Countries in ' + expressed.slice(2));
+    
+    var topTenList = topTenDiv.append("ol")
+        .attr("class","topTenList");
+    
+    updateTopTen(ByYear_CountryCsv);
+}
+    
+function updateTopTen(ByYear_CountryCsv){
+    //create an array of terror attacks by country
+    var topTenArray = [];
+    for (var i=0; i < ByYear_CountryCsv.length; i++){
+        var inputData = ByYear_CountryCsv[i][expressed];
+        topTenArray.push(parseInt(inputData));
+    };
+    
+    console.log(topTenArray);
+    
+    //sort the array
+    topTenArray.sort(function(a,b){return b-a});
+    
+    console.log(topTenArray[5]);
+    
+    var topTenCountries = []
+    
+    for (var i=0; i < 10; i++){
+        var arrayToPush = [],
+            findMatch = topTenArray[i];
+        for (var a=0; a<ByYear_CountryCsv.length; a++){
+            if (ByYear_CountryCsv[a][expressed]==findMatch){
+                //console.log(ByYear_CountryCsv[a].COUNTRY);
+                topTenCountries.push([ByYear_CountryCsv[a].COUNTRY,findMatch]);
+            }
+        }
+    }
+    console.log(topTenCountries);
+    
+    for (var i=0; i<topTenCountries.length; i++){
+        var topTenList = d3.select(".topTenList")
+            .append("li")
+            .attr("class","topTenListItem "+ i.toString())
+            .text(topTenCountries[i][0] + ' ' + topTenCountries[i][1]);
+    }
+        
+};
+        
+        
+    
 $(document).ready(createMap);
 })();
