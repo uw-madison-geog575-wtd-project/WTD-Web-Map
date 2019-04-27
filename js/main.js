@@ -22,7 +22,6 @@ function createMap(){
         accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNqbG9vMnc4MjA5ZTczcHBiYmlzYTNhcDAifQ.BaYtqvvn4Lzsl6mdotKeLQ'
         }).addTo(map);
 
-
     getData(map);
 };
 
@@ -30,7 +29,9 @@ function getData(map){
     $.ajax("data/EuropeTerrorSince2015.geojson", {
         dataType: "json",
         success: function(response){
-            var geoJsonLayer = L.geoJson(response);
+            var geoJsonLayer = L.geoJson(response, {
+                onEachFeature: onEachFeature
+            });
             var markers = L.markerClusterGroup();
             markers.addLayer(geoJsonLayer);
             map.addLayer(markers);
@@ -56,6 +57,16 @@ function getData(map){
     }
 };
 
+function onEachFeature (feature, layer) {
+    var popupContent = "";
+    if (feature.properties) {
+        for (var property in feature.properties) {
+            popupContent += "<p>" + property + ": " + feature.properties[property] + "</p>";
+    }
+   layer.bindPopup(popupContent);
+    }
+}    
+    
 //function to create the top 10 countries div
 function createTopTen(ByYear_CountryCsv){
     //add the div
