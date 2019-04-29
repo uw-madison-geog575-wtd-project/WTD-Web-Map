@@ -66,7 +66,7 @@ function getData(map){
         console.log(ByYear_CountryCsv);
         
         //call the top ten function
-        createTopTen(ByYear_CountryCsv);
+        setTopTen(ByYear_CountryCsv);
         
         //call the chart function
         setChart(ByYear_WeaponTypeCsv);
@@ -88,7 +88,7 @@ function onEachFeature (feature, layer) {
 }    
     
 //function to create the top 10 countries div
-function createTopTen(ByYear_CountryCsv){
+function setTopTen(ByYear_CountryCsv){
     //add the div
     var topTenDiv = d3.select(".topTenContainer")
         .append("div")
