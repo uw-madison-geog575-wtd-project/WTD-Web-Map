@@ -49,7 +49,7 @@
 .axis path, .axis line {
     fill: none;
     stroke: #999;
-    stroke-width: 1px;
+    stroke-width: 5px;
     shape-rendering: crispEdges;
 }
 
@@ -58,4 +58,8 @@
     font-size: 0.75em;
     fill: black;
     font-family:trebuchet ms;
+}
+
+.tick {
+    display:none;
 }
