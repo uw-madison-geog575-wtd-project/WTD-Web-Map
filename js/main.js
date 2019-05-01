@@ -1,9 +1,9 @@
 (function(){
 
 //pseudo-global variables and the initial expressed attribute
-var attrArray = ["YR2000","YR2001","YR2002","YR2003","YR2004","YR2005","YR2006","YR2007","YR2008","YR2009","YR2010","YR2011","YR2012","YR2013","YR2014","YR2015","YR2016","YR2017"],
-    tableArray = ["ByYear_AttackTypeCsv","ByYear_TargetTypeCsv","ByYear_WeaponTypeCsv"],
-    expressed = attrArray[17],
+var attrArray = ["YR2015","YR2016","YR2017"],
+    tableArray = [],
+    expressed = attrArray[0],
     expressedTable = tableArray[0];
     console.log(expressed);
   
@@ -64,6 +64,12 @@ function getData(map){
         console.log(ByYear_TargetTypeCsv);
         console.log(ByYear_WeaponTypeCsv);
         console.log(ByYear_CountryCsv);
+        
+        //populate the csv table array
+        tableArray.push(ByYear_AttackTypeCsv);
+        tableArray.push(ByYear_TargetTypeCsv);
+        tableArray.push(ByYear_WeaponTypeCsv);
+        console.log(tableArray);
         
         //call the top ten function
         setTopTen(ByYear_CountryCsv);
