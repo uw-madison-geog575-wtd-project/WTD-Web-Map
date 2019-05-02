@@ -1,19 +1,16 @@
 #map {
     width: 75%;
     height: auto;
-    align: left;
 }
 
 .chartContainer {
     width: 20%;
     height: auto;
-    align: right;
 }
 
 .topTenContainer {
     width: 20%;
     height: auto;
-    align: right;
 }
 
 .header {
