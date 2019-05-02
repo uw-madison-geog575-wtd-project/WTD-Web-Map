@@ -234,8 +234,7 @@ function setChart(csvData){
         })
         .text(function (d) {
             return d.TYPE + ' (' +d[expressed] + ')';
-        })
-        .attr("color", "white");
+        });
     
     updateChart(csvData);
 };
