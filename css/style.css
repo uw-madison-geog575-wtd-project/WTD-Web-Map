@@ -7,6 +7,11 @@
 .header {
     font: Helvetica;
     text-align: center;
+    color: white;
+}
+
+body {
+    background-color: #323232;
 }
 
 #panel {
@@ -31,7 +36,7 @@
 
 .leaflet-popup-content p {
     margin: 0.2em 0;
-    color: navy;
+    color: #323232;
     font: Helvetica;
 }
 
