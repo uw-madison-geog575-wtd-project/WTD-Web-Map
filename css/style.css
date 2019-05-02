@@ -68,3 +68,7 @@ body {
 .tick {
     display:none;
 }
+
+.topTenTitle, .topTenList, .label {
+    color: white;
+}
