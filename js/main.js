@@ -39,7 +39,7 @@ function createMap(){
 };
 
 function getData(map){
-    $.ajax("data/EuropeTerrorSince2015.geojson", {
+    $.ajax("data/EuropeTerrorCirca2015.geojson", {
         dataType: "json",
         success: function(response){
             var geoJsonLayer = L.geoJson(response, {
