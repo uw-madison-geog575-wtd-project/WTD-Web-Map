@@ -69,6 +69,7 @@ function getData(map){
         tableArray.push(ByYear_AttackTypeCsv);
         tableArray.push(ByYear_TargetTypeCsv);
         tableArray.push(ByYear_WeaponTypeCsv);
+        tableArray.push(ByYear_CountryCsv);
         console.log(tableArray);
         
         //call the top ten function
@@ -77,8 +78,8 @@ function getData(map){
         //call the chart function
         setChart(ByYear_WeaponTypeCsv);
         
-        //test
-        updateChart(ByYear_AttackTypeCsv);
+        //call the year update function
+        createYearUpdate();
         
     }
 };
@@ -102,23 +103,33 @@ function setTopTen(ByYear_CountryCsv){
     
     var topTenTitle = topTenDiv.append("h1")
         .attr("class","topTenTitle")
-        .text('Top 10 Most Terrorized Countries in ' + expressed.slice(2));
+        .text('Top 10 Most Terrorized Countries in:');
+    
+    var topTenSubtitle = topTenDiv.append("div")
+        .attr("class","topTenSubtitle")
+        .append("h2")
+        .attr("class","topTenSubtitleText")
+        .text(expressed.slice(2));
     
     var topTenList = topTenDiv.append("ol")
         .attr("class","topTenList");
     
-    updateTopTen(ByYear_CountryCsv);
+    updateTopTen(ByYear_CountryCsv, expressed);
 }
     
-function updateTopTen(ByYear_CountryCsv){
+function updateTopTen(csvData, attribute){
+    console.log(csvData);
     //update the title
     var topTenTitle = d3.select(".topTenTitle")
-        .text('Top 10 Most Terrorized Countries in ' + expressed.slice(2));
+        .text('Top 10 Most Terrorized Countries in:');
+    
+    var topTenSubtitle = d3.select(".topTenSubtitleText")
+        .text(attribute.slice(2));
     
     //create an array of terror attacks by country
     var topTenArray = [];
-    for (var i=0; i < ByYear_CountryCsv.length; i++){
-        var inputData = ByYear_CountryCsv[i][expressed];
+    for (var i=0; i < csvData.length; i++){
+        var inputData = csvData[i][attribute];
         topTenArray.push(parseInt(inputData));
     };
     
@@ -134,11 +145,11 @@ function updateTopTen(ByYear_CountryCsv){
     
     for (var i=0; i < 10; i++){
         var findMatch = topTenArray[i];
-        for (var a=0; a<ByYear_CountryCsv.length; a++){
-            if (ByYear_CountryCsv[a][expressed]==findMatch && !duplicateCheck.includes(ByYear_CountryCsv[a].COUNTRY)){
+        for (var a=0; a<csvData.length; a++){
+            if (csvData[a][attribute]==findMatch && !duplicateCheck.includes(csvData[a].COUNTRY)){
                 //console.log(ByYear_CountryCsv[a].COUNTRY);
-                topTenCountries.push([ByYear_CountryCsv[a].COUNTRY,findMatch]);
-                duplicateCheck.push(ByYear_CountryCsv[a].COUNTRY);
+                topTenCountries.push([csvData[a].COUNTRY,findMatch]);
+                duplicateCheck.push(csvData[a].COUNTRY);
             }
         }
     }
@@ -148,6 +159,8 @@ function updateTopTen(ByYear_CountryCsv){
         
     console.log(topTenCountries);
     
+    d3.select(".topTenList").text('');
+    
     for (var i=0; i<topTenCountries.length; i++){
         var topTenList = d3.select(".topTenList")
             .append("li")
@@ -155,8 +168,40 @@ function updateTopTen(ByYear_CountryCsv){
             .text(topTenCountries[i][0] + ' - ' + topTenCountries[i][1] + ' acts of terrorism');
     }
         
-};   
+};  
+    
+function createYearUpdate(){
+    //create year update elements
+    $('.topTenSubtitle').append('<input class="range-slider" type="range" value="0">');
+    $('.topTenSubtitle').append('<button class="skip" id="reverse"></button>');
+    $('.topTenSubtitle').append('<button class="skip" id="forward"></button>');
+    $('#reverse').html('<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>');
+    $('#forward').html('<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>');
+    //$('.topTenTitle').append('<h1 class="expressedYear">' + expressed.slice(2) + '</h1>');
+    
+    $('.skip').click(function(){
+        var index = $('.range-slider').val();
+        console.log(index);
+
+        console.log(index);
         
+        if ($(this).attr('id') == 'forward'){
+            index++;
+            index = index > 2 ? 0: index;
+        } else if ($(this).attr('id') == 'reverse'){
+            index--;
+            index = index < 0 ? 2: index;
+        };
+        console.log(index);
+        $('.range-slider').val(index);
+        
+        //$('.expressedYear').text(attrArray[index].slice(2));
+        var expressed = attrArray[index];
+        console.log(expressed);
+        updateTopTen(tableArray[3], attrArray[index]);
+    });        
+}  
+    
 function setChart(csvData){
     var chartTitle = d3.select(".chartContainer")
         .append("h2")

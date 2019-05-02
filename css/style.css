@@ -21,15 +21,7 @@ body {
 }
 
 .range-slider {
-    width: 50%;
-}
-
-#forward {
-    float: right;
-}
-
-#reverse {
-    float: left;
+    display:none;
 }
 
 .leaflet-popup-content p {
