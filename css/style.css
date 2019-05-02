@@ -1,16 +1,5 @@
 #map {
-    width: 75%;
-    height: auto;
-}
-
-.chartContainer {
-    width: 20%;
-    height: auto;
-}
-
-.topTenContainer {
-    width: 20%;
-    height: auto;
+    height: 750px;
 }
 
 .header {
