@@ -69,6 +69,18 @@ body {
     display:none;
 }
 
-.topTenTitle, .topTenList, .label, .chartTitle {
+.topTenTitle {
     color: white;
+}
+
+.topTenList {
+    color: white;
+}
+
+.chartTitle {
+    color: white;
+}
+
+.label {
+    color: white
 }
