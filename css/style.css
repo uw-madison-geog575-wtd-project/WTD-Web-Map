@@ -69,6 +69,6 @@ body {
     display:none;
 }
 
-.topTenTitle, .topTenList, .label {
-    color: white;
+.topTenTitle, .topTenList, .label, .chartTitle {
+    text-color: white;
 }
