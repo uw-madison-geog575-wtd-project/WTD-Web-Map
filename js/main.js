@@ -76,7 +76,7 @@ function getData(map){
         setTopTen(ByYear_CountryCsv);
         
         //call the chart function
-        setChart(ByYear_WeaponTypeCsv);
+        setChart(ByYear_AttackTypeCsv);
         
         //call the year update function
         createYearUpdate();
@@ -206,7 +206,7 @@ function setChart(csvData){
     var chartTitle = d3.select(".chartContainer")
         .append("h2")
         .attr("class","chartTitle")
-        .text("Attack Type By Category - " + expressed.slice(2));
+        .text("Attack Type By Category");
     
     var minMaxArray = [];
     for (i=0; i < csvData.length; i++){

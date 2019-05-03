@@ -20,8 +20,42 @@ body {
     text-align: center;
 }
 
+.topTenContainer {
+    width: 400px;
+    text-align:center;
+    font-family:tahoma;
+}
+
+.topTenSubtitle h2 {
+    color: yellow;
+    font-weight:bolder;
+}
+
 .range-slider {
     display:none;
+}
+
+#forward {
+    background-color:#323232;
+    border:none;
+    color:#de2d26;
+    font-size:25px;
+    
+}
+
+#forward:active {
+    color:#a50f15;
+}
+
+#reverse {
+    background-color:#323232;
+    border:none;
+    color:#de2d26;
+    font-size:25px;
+}
+
+#reverse:active {
+    color:#a50f15;
 }
 
 .leaflet-popup-content p {
