@@ -66,7 +66,7 @@ function getData(map){
                 pointToLayer: function(feature, latlng) {
                     return L.circleMarker(latlng, {
                         radius: 6,
-                        opacity: .5,
+                        opacity: 1,
                         color: 'white',
                         fillColor: 'green',
                         fillOpacity: 1
