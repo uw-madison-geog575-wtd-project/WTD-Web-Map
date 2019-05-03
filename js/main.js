@@ -9,8 +9,7 @@ var attrArray = ["YR2015","YR2016","YR2017"],
     tableArray = [],
     expressed = attrArray[0],
     expressedTable = tableArray[0];
-    console.log(expressed);
-  
+
 //chart frame dimensions
     var margin = {
         top: 15,
@@ -68,7 +67,7 @@ function getData(map){
                     return L.circleMarker(latlng, {
                         radius: 6,
                         opacity: .5,
-                        color: 'green',
+                        color: 'white',
                         fillColor: 'green',
                         fillOpacity: 0.8
                     })
@@ -82,7 +81,6 @@ function getData(map){
             attacks.eachLayer(function(layer) {
                 var theColor;
                 var attacktype = layer.feature.properties.attacktype;
-                //console.log(attacktype);
                 if (attacktype == 'Bombing/Explosion') {
                     theColor = 'blue'
                 } else if (attacktype == 'Assassination') {
@@ -104,7 +102,7 @@ function getData(map){
                 }
                 //update color of point
                 layer.setStyle({
-                    color: theColor,
+                    color: 'white',
                     fillColor: theColor
                 })
             })
@@ -136,17 +134,11 @@ function getData(map){
         .await(callback);
     
     function callback(error, ByYear_AttackTypeCsv, ByYear_TargetTypeCsv, ByYear_WeaponTypeCsv, ByYear_CountryCsv){
-        //console.log(ByYear_AttackTypeCsv);
-        //console.log(ByYear_TargetTypeCsv);
-        //console.log(ByYear_WeaponTypeCsv);
-        //console.log(ByYear_CountryCsv);
-        
         //populate the csv table array
         tableArray.push(ByYear_AttackTypeCsv);
         tableArray.push(ByYear_TargetTypeCsv);
         tableArray.push(ByYear_WeaponTypeCsv);
         tableArray.push(ByYear_CountryCsv);
-        console.log(tableArray);
         
         //call the top ten function
         setTopTen(ByYear_CountryCsv);
@@ -207,7 +199,6 @@ function setTopTen(ByYear_CountryCsv){
 }
     
 function updateTopTen(csvData, attribute){
-    console.log(csvData);
     //update the title
     var topTenTitle = d3.select(".topTenTitle")
         .text('Top 10 Most Terrorized Countries in:');
@@ -222,12 +213,8 @@ function updateTopTen(csvData, attribute){
         topTenArray.push(parseInt(inputData));
     };
     
-    console.log(topTenArray);
-    
     //sort the array
     topTenArray.sort(function(a,b){return b-a});
-    
-    console.log(topTenArray[5]);
     
     var topTenCountries = [],
         duplicateCheck = [];
@@ -236,7 +223,6 @@ function updateTopTen(csvData, attribute){
         var findMatch = topTenArray[i];
         for (var a=0; a<csvData.length; a++){
             if (csvData[a][attribute]==findMatch && !duplicateCheck.includes(csvData[a].COUNTRY)){
-                //console.log(ByYear_CountryCsv[a].COUNTRY);
                 topTenCountries.push([csvData[a].COUNTRY,findMatch]);
                 duplicateCheck.push(csvData[a].COUNTRY);
             }
@@ -245,8 +231,6 @@ function updateTopTen(csvData, attribute){
     while (topTenCountries.length != 10){
         topTenCountries.pop();
     }
-        
-    console.log(topTenCountries);
     
     d3.select(".topTenList").text('');
     
@@ -270,9 +254,6 @@ function createYearUpdate(){
     
     $('.skip').click(function(){
         var index = $('.range-slider').val();
-        console.log(index);
-
-        console.log(index);
         
         if ($(this).attr('id') == 'forward'){
             index++;
@@ -281,12 +262,10 @@ function createYearUpdate(){
             index--;
             index = index < 0 ? 2: index;
         };
-        console.log(index);
         $('.range-slider').val(index);
         
         //$('.expressedYear').text(attrArray[index].slice(2));
         var expressed = attrArray[index];
-        console.log(expressed);
         updateTopTen(tableArray[3], attrArray[index]);
     });        
 }  
@@ -303,7 +282,6 @@ function setChart(csvData){
         minMaxArray.push(parseInt(inputData));
     }
     minMaxArray.sort(function(a,b){return b-a});
-    console.log(minMaxArray[0]);
     var max = minMaxArray[0];
     
     //sort bars based on value
