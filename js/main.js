@@ -69,7 +69,7 @@ function getData(map){
                         opacity: .5,
                         color: 'white',
                         fillColor: 'green',
-                        fillOpacity: 0.8
+                        fillOpacity: 1
                     })
                 }
             });
