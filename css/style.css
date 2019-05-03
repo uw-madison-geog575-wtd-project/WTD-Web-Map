@@ -12,6 +12,40 @@ body {
     background-color: #323232;
 }
 
+.header {
+    background-color:#a50f15;
+    font-size:1.5em;
+    height:50px;
+    margin:0px 0px 10px 0px;
+}
+
+.footer {
+    background-color:#a50f15;
+    font-size:1.2em;
+    text-align: center;
+    padding:5px;
+}
+
+.footer p {
+    color:darkgrey;
+    font-weight:bold;
+}
+
+a:link,a:visited {
+    color:#fecc5c;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#fd8d3c;
+    text-decoration:none;
+}
+
+a:active {
+    color:#f03b20;
+    text-decoration:none;
+}
+
 #panel {
     width: 100%;
     padding: 5px;
@@ -26,9 +60,16 @@ body {
     font-family:tahoma;
 }
 
+.topTenTitle {
+    margin:0px;
+    font-weight:bold;
+}
+
 .topTenSubtitle h2 {
+    font-family:fantasy;
+    font-size: 2em;
     color: yellow;
-    font-weight:bolder;
+    margin:2px;
 }
 
 .range-slider {
@@ -56,6 +97,11 @@ body {
 
 #reverse:active {
     color:#a50f15;
+}
+
+.chartContainer {
+    width:400px;
+    font-family:tahoma;
 }
 
 .leaflet-popup-content p {
