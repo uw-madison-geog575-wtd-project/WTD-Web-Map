@@ -59,7 +59,6 @@ var attrArray = ["YR2000","YR2001","YR2002","YR2003","YR2004","YR2005","YR2006",
     tableArray = ["ByYear_AttackTypeCsv","ByYear_TargetTypeCsv","ByYear_WeaponTypeCsv"],
     expressed = attrArray[17],
     expressedTable = tableArray[0];
-    //console.log(expressed);
   
 //chart frame dimensions
     var margin = {
@@ -118,9 +117,9 @@ function getData(map2){
                     return L.circleMarker(latlng, {
                         radius: 6,
                         opacity: .5,
-                        color: 'green',
+                        color: 'white',
                         fillColor: 'green',
-                        fillOpacity: 0.8
+                        fillOpacity: 1
                     })
                 }
             });
@@ -132,7 +131,6 @@ function getData(map2){
             attacks2.eachLayer(function(layer) {
                 var theColor;
                 var attacktype = layer.feature.properties.attacktype;
-                //console.log(attacktype);
                 if (attacktype == 'Bombing/Explosion') {
                     theColor = 'blue'
                 } else if (attacktype == 'Assassination') {
@@ -154,7 +152,7 @@ function getData(map2){
                 }
                 //update color of point
                 layer.setStyle({
-                    color: theColor,
+                    color: 'white',
                     fillColor: theColor
                 })
             })
