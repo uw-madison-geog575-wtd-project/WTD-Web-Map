@@ -35,7 +35,7 @@ function createMap(){
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.dark',
-        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNqbG9vMnc4MjA5ZTczcHBiYmlzYTNhcDAifQ.BaYtqvvn4Lzsl6mdotKeLQ'
+        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNrZTB2cTJ0ajBuanMycXA3czRnemQ4djkifQ._OZwc5nlRLOj5ef4y4t8Cw'
         }).addTo(map);
 
     getData(map);
