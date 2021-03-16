@@ -31,10 +31,12 @@ function createMap(){
         });
 
 
-    var tileLayer = L.tileLayer.provider('Jawg.Dark', {
-	    attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	    accessToken: 'D7aBnz21HjQ71B42SeIuTT0ljcZvX3AiObMGmuIX5KS7HkOlToRbftNkoYK8igVv'
-    }).addTo(map);
+    var tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png').addTo(map);
+	
+    var client = new carto.Client({
+    apiKey: '8f2d374ce43b897835ad9ffa471e3a30a9ec603a',
+    username: 'jmyatt2'
+});
 
     getData(map);
    
