@@ -31,12 +31,12 @@ function createMap(){
         });
 
 
-    var tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png').addTo(map);
-	
-    var client = new carto.Client({
-    apiKey: '8f2d374ce43b897835ad9ffa471e3a30a9ec603a',
-    username: 'jmyatt2'
-});
+    var tileLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.dark',
+        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNrbWJkaTRpMDAxdTgydW44eTRiN2Y1dWsifQ._ZVDXnMqEKumPbEq9Oi9Lw'
+        }).addTo(map);
 
     getData(map);
    
