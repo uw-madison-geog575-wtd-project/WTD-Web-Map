@@ -85,7 +85,7 @@ function createMap2(){
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.dark',
-        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNranV1M3h6dTBrZXEycXAzMXYxZzR6d20ifQ.NXBOpfzkXP0oXmAC4g2zLA'
+        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNrbWJkaTRpMDAxdTgydW44eTRiN2Y1dWsifQ._ZVDXnMqEKumPbEq9Oi9Lw'
         }).addTo(map2);
 
     getData(map2);
