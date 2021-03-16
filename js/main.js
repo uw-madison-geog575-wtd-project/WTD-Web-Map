@@ -31,12 +31,11 @@ function createMap(){
         });
 
 
-    var tileLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.dark',
-        accessToken: 'pk.eyJ1Ijoiam15YXR0IiwiYSI6ImNrZTB2cTJ0ajBuanMycXA3czRnemQ4djkifQ._OZwc5nlRLOj5ef4y4t8Cw'
-        }).addTo(map);
+    var tileLayer = L.tileLayer('https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=D7aBnz21HjQ71B42SeIuTT0ljcZvX3AiObMGmuIX5KS7HkOlToRbftNkoYK8igVv', {
+	    attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	    subdomains: 'abcd',
+	    accessToken: 'D7aBnz21HjQ71B42SeIuTT0ljcZvX3AiObMGmuIX5KS7HkOlToRbftNkoYK8igVv'
+    });.addTo(map);
 
     getData(map);
    
